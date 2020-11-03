@@ -14,9 +14,10 @@ SCREEN_SIZE = [1000, 1000]
 file = 'room_1'
 
 
-class Window(QMainWindow):
+class Window(QDialog, QWidget):
     def __init__(self):
         super().__init__()
+        self.setModal(True)
         self.initUI()
 
     def initUI(self):
@@ -104,9 +105,3 @@ class Window(QMainWindow):
             self.make_room(f'{file}/background.png')
         else:
             exit()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = Window()
-    sys.exit(app.exec())
