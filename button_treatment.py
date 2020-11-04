@@ -10,40 +10,41 @@ import challenge_window
 
 CHALLENGE_SCREEN_SIZE = [280, 100]
 
-sequence_text = ''
-
-with open('answer.txt', 'r', encoding='utf8') as input_file:
-    ans = input_file.readline()
-with open('challenge.txt', 'r', encoding='utf8') as input_file:
-    chall_list = input_file.read().split('\n')
 SCREEN_SIZE = [1000, 1000]
 
 
-def button_treatment(self, command, in_file, file):
+def button_treatment(self, command, button_name):
+    with open('level_num.txt', 'r', encoding='utf8') as input_file:
+        level = input_file.readline()
+    with open(f'{level}/file.txt', 'r', encoding='utf8') as input_file:
+        file = input_file.readline()
+    with open(f'{level}/answer.txt', 'r', encoding='utf8') as input_file:
+        ans = input_file.readline()
+    with open(f'{level}/challenge.txt', 'r', encoding='utf8') as input_file:
+        chall_list = input_file.read().split('\n')
+
     if command == 'ОБРАТНО' or command == 'ВОЙТИ В КОМНАТУ':
         return 1
     else:
         if command == 'ПОСМОТРЕТЬ':
 
-            with open(in_file, 'r', encoding='utf8') as input_file:
+            with open(f'{level}/{file}/{button_name}', 'r', encoding='utf8') as input_file:
                 text = input_file.read().split('\n')
 
-            global sequence_text
-
-            with open('completed_tasks.txt', 'r') as input_file:
+            with open(f'{level}/completed_tasks.txt', 'r') as input_file:
                 completed_tasks_lst = input_file.read().split()
 
             if text[4] not in completed_tasks_lst:
 
-                with open('completed_tasks.txt', 'a') as output_file:
+                with open(f'{level}/completed_tasks.txt', 'a') as output_file:
                     output_file.write(text[4] + '\n')
 
                 if chall_list[int(text[4]) - 1] != '':
-                    with open('inventory.txt', 'a') as output_file:
+                    with open(f'{level}/inventory.txt', 'a') as output_file:
                         output_file.write(chall_list[int(text[4]) - 1] + '\n')
 
-                with open('sequence_text.txt', 'w', encoding='utf8') as output_file:
-                    os.system(r'nul>sequence_text.txt')
+                with open(f'{level}/sequence_text.txt', 'w', encoding='utf8') as output_file:
+                    os.system(fr'nul>{level}/sequence_text.txt')
 
                     if chall_list[int(text[4]) - 1] != '':
                         output_file.write(chall_list[int(text[4]) - 1])
@@ -53,8 +54,8 @@ def button_treatment(self, command, in_file, file):
                 self.challenge_window = challenge_window.Challenge_window()
                 self.challenge_window.show()
             else:
-                with open('sequence_text.txt', 'w', encoding='utf8') as output_file:
-                    os.system(r'nul>sequence_text.txt')
+                with open(f'{level}/sequence_text.txt', 'w', encoding='utf8') as output_file:
+                    os.system(fr'nul>{level}/sequence_text.txt')
                     output_file.write('Вы уже тут все посмотрели')
 
                 self.challenge_window = challenge_window.Challenge_window()

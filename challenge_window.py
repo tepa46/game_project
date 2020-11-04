@@ -21,7 +21,10 @@ class Challenge_window(QDialog, QWidget):
 
         self.label = QLabel(self)
 
-        with open('sequence_text.txt', 'r', encoding='utf8') as input_file:
+        with open('level_num.txt', 'r', encoding='utf8') as input_file:
+            level = input_file.readline()
+
+        with open(f'{level}/sequence_text.txt', 'r', encoding='utf8') as input_file:
             sequence_text = input_file.read()
 
         if sequence_text != 'Вы уже тут все посмотрели' and sequence_text != 'Здесь ничего нет':
@@ -35,7 +38,10 @@ class Challenge_window(QDialog, QWidget):
         self.btn.clicked.connect(self.close_window)
 
     def close_window(self):
-        with open('sequence_text.txt', 'r', encoding='utf8') as input_file:
+        with open('level_num.txt', 'r', encoding='utf8') as input_file:
+            level = input_file.readline()
+
+        with open(f'{level}/sequence_text.txt', 'r', encoding='utf8') as input_file:
             sequence_text = input_file.read()
 
         if sequence_text != 'Вы уже тут все посмотрели' and sequence_text != 'Здесь ничего нет':

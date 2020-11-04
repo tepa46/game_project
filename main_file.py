@@ -8,6 +8,7 @@ import button_config
 import button_treatment
 import time
 import invent
+import win_window
 
 SCREEN_SIZE = [1000, 1000]
 
@@ -21,39 +22,44 @@ class Window(QDialog, QWidget):
         self.initUI()
 
     def initUI(self):
-        os.system(r'nul>inventory.txt')
-        os.system(r'nul>completed_tasks.txt')
+
+        with open('level_num.txt', 'r', encoding='utf8') as input_file:
+            level = input_file.readline()
+        with open(f'{level}/file.txt', 'r', encoding='utf8') as input_file:
+            file = input_file.readline()
+
+        os.system(fr'nul>{level}/inventory.txt')
+        os.system(fr'nul>{level}/completed_tasks.txt')
 
         self.setWindowTitle('Undertale')
         self.setGeometry(0, 0, *SCREEN_SIZE)
 
         self.button_1 = QPushButton(self)
-        self.button_1.clicked.connect(lambda: self.pushed_button('/button_1.txt'))
+        self.button_1.clicked.connect(lambda: self.pushed_button('button_1.txt'))
 
         self.button_2 = QPushButton(self)
-        self.button_2.clicked.connect(lambda: self.pushed_button('/button_2.txt'))
+        self.button_2.clicked.connect(lambda: self.pushed_button('button_2.txt'))
 
         self.button_3 = QPushButton(self)
-        self.button_3.clicked.connect(lambda: self.pushed_button('/button_3.txt'))
+        self.button_3.clicked.connect(lambda: self.pushed_button('button_3.txt'))
 
         self.button_4 = QPushButton(self)
-        self.button_4.clicked.connect(lambda: self.pushed_button('/button_4.txt'))
+        self.button_4.clicked.connect(lambda: self.pushed_button('button_4.txt'))
 
         self.button_5 = QPushButton(self)
-        self.button_5.clicked.connect(lambda: self.pushed_button('/button_5.txt'))
+        self.button_5.clicked.connect(lambda: self.pushed_button('button_5.txt'))
 
         self.button_invent = QPushButton('ИНВЕНТАРЬ', self)
         self.button_invent.clicked.connect(self.invent_show)
 
-        self.start_game()
-        self.make_room(f'{file}/background.png')
+        self.make_room(f'{level}/{file}/background.png')
 
     def make_room(self, text):
         self.make_background(text)
         self.make_buttons()
 
     def make_buttons(self):
-        button_config.button_config(self, file)
+        button_config.button_config(self)
         self.show()
 
     def make_background(self, file_name):
@@ -64,44 +70,41 @@ class Window(QDialog, QWidget):
         self.setPalette(palette)
 
     def pushed_button(self, button_name):
-        global file
-        with open(file + button_name, 'r', encoding='utf8') as input_file:
+        with open('level_num.txt', 'r', encoding='utf8') as input_file:
+            level = input_file.readline()
+        with open(f'{level}/file.txt', 'r', encoding='utf8') as input_file:
+            file = input_file.readline()
+        with open(f'{level}/{file}/{button_name}', 'r', encoding='utf8') as input_file:
             text = input_file.read()
             command = text.split('\n')[2]
             new_file = text.split('\n')[3]
 
-        code = button_treatment.button_treatment(self, command, new_file + button_name, new_file)
+        code = button_treatment.button_treatment(self, command, button_name)
         if code == 1:
             self.update()
-            file = new_file
-            self.make_room(f'{file}/background.png')
+            os.system(fr'nul>{level}/file.txt')
+            with open(f'{level}/file.txt', 'a', encoding='utf8') as output_file:
+                output_file.write(new_file)
+            with open('level_num.txt', 'r', encoding='utf8') as input_file:
+                level = input_file.readline()
+            with open(f'{level}/file.txt', 'r', encoding='utf8') as input_file:
+                file = input_file.readline()
+            self.make_room(f'{level}/{file}/background.png')
             QApplication.processEvents()
         if code == 2:
-            self.update()
-            file = new_file
-            self.make_room('win/win.png')
-            self.start_game()
-            QApplication.processEvents()
+            os.system(fr'nul>{level}/file.txt')
+            with open(f'{level}/file.txt', 'a', encoding='utf8') as output_file:
+                output_file.write(new_file)
+            self.close()
+            self.win_window = win_window.Win_window()
+            self.win_window.show()
         if code == 3:
-            self.update()
-            file = new_file
-            self.make_room('lost/lost.png')
-            self.start_game()
-            QApplication.processEvents()
+            os.system(fr'nul>{level}/file.txt')
+            with open(f'{level}/file.txt', 'a', encoding='utf8') as output_file:
+                output_file.write(new_file)
+            # self.make_room('lost/lost.png')
+            self.close()
 
     def invent_show(self):
         self.invent_view = invent.Invent()
         self.invent_view.show()
-
-    def start_game(self):
-        level, ok_pressed = QInputDialog.getItem(
-            self, "Выберите уровень", "уровни",
-            ("1", "2", "3"), 1, False)
-        if ok_pressed:
-            global file
-            file = 'room_1'
-            os.system(r'nul>completed_tasks.txt')
-            os.system(r'nul>inventory.txt')
-            self.make_room(f'{file}/background.png')
-        else:
-            exit()

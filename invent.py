@@ -21,7 +21,9 @@ class Invent(QDialog, QWidget):
 
         self.list_wid = QListWidget(self)
         self.list_wid.resize(300, 250)
-        with open('inventory.txt', 'r') as input_file:
+        with open('level_num.txt', 'r', encoding='utf8') as input_file:
+            level = input_file.readline()
+        with open(f'{level}/inventory.txt', 'r') as input_file:
             all_file = input_file.read().split('\n')
         for line in all_file:
             self.list_wid.addItem(line)
