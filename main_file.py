@@ -9,6 +9,8 @@ import button_treatment
 import time
 import invent
 import win_window
+import lost_window
+import game_info
 
 SCREEN_SIZE = [1000, 1000]
 
@@ -22,14 +24,7 @@ class Window(QDialog, QWidget):
         self.initUI()
 
     def initUI(self):
-
-        with open('level_num.txt', 'r', encoding='utf8') as input_file:
-            level = input_file.readline()
-        with open(f'{level}/file.txt', 'r', encoding='utf8') as input_file:
-            file = input_file.readline()
-
-        os.system(fr'nul>{level}/inventory.txt')
-        os.system(fr'nul>{level}/completed_tasks.txt')
+        game_info.clear_files()
 
         self.setWindowTitle('Undertale')
         self.setGeometry(0, 0, *SCREEN_SIZE)
@@ -52,7 +47,7 @@ class Window(QDialog, QWidget):
         self.button_invent = QPushButton('ИНВЕНТАРЬ', self)
         self.button_invent.clicked.connect(self.invent_show)
 
-        self.make_room(f'{level}/{file}/background.png')
+        self.make_room(f'{game_info.get_level()}/{game_info.get_file()}/background.png')
 
     def make_room(self, text):
         self.make_background(text)
@@ -70,11 +65,7 @@ class Window(QDialog, QWidget):
         self.setPalette(palette)
 
     def pushed_button(self, button_name):
-        with open('level_num.txt', 'r', encoding='utf8') as input_file:
-            level = input_file.readline()
-        with open(f'{level}/file.txt', 'r', encoding='utf8') as input_file:
-            file = input_file.readline()
-        with open(f'{level}/{file}/{button_name}', 'r', encoding='utf8') as input_file:
+        with open(f'{game_info.get_level()}/{game_info.get_file()}/{button_name}', 'r', encoding='utf8') as input_file:
             text = input_file.read()
             command = text.split('\n')[2]
             new_file = text.split('\n')[3]
@@ -82,29 +73,29 @@ class Window(QDialog, QWidget):
         code = button_treatment.button_treatment(self, command, button_name)
         if code == 1:
             self.update()
-            os.system(fr'nul>{level}/file.txt')
-            with open(f'{level}/file.txt', 'a', encoding='utf8') as output_file:
-                output_file.write(new_file)
-            with open('level_num.txt', 'r', encoding='utf8') as input_file:
-                level = input_file.readline()
-            with open(f'{level}/file.txt', 'r', encoding='utf8') as input_file:
-                file = input_file.readline()
-            self.make_room(f'{level}/{file}/background.png')
+            os.system(fr'nul>{game_info.get_level()}/file.txt')
+            game_info.put_file(new_file)
+            self.make_room(f'{game_info.get_level()}/{game_info.get_file()}/background.png')
             QApplication.processEvents()
         if code == 2:
-            os.system(fr'nul>{level}/file.txt')
-            with open(f'{level}/file.txt', 'a', encoding='utf8') as output_file:
-                output_file.write(new_file)
-            self.close()
-            self.win_window = win_window.Win_window()
-            self.win_window.show()
+            os.system(fr'nul>{game_info.get_level()}/file.txt')
+            game_info.put_file(new_file)
+            self.do_win_window()
         if code == 3:
-            os.system(fr'nul>{level}/file.txt')
-            with open(f'{level}/file.txt', 'a', encoding='utf8') as output_file:
-                output_file.write(new_file)
-            # self.make_room('lost/lost.png')
-            self.close()
+            os.system(fr'nul>{game_info.get_level()}/file.txt')
+            game_info.put_file(new_file)
+            self.do_lost_window()
 
     def invent_show(self):
         self.invent_view = invent.Invent()
         self.invent_view.show()
+
+    def do_win_window(self):
+        self.close()
+        self.win_window = win_window.Win_window()
+        self.win_window.show()
+
+    def do_lost_window(self):
+        self.close()
+        self.lost_window = lost_window.Lost_window()
+        self.lost_window.show()

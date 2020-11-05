@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QLabel, QPushButton, QApplication
 from PyQt5.QtGui import QPixmap, QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize
 import time
+import game_info
 
 INVENT_SCREEN_SIZE = [300, 300]
 
@@ -21,12 +22,10 @@ class Invent(QDialog, QWidget):
 
         self.list_wid = QListWidget(self)
         self.list_wid.resize(300, 250)
-        with open('level_num.txt', 'r', encoding='utf8') as input_file:
-            level = input_file.readline()
-        with open(f'{level}/inventory.txt', 'r') as input_file:
-            all_file = input_file.read().split('\n')
+        all_file = game_info.get_inventory()
         for line in all_file:
             self.list_wid.addItem(line)
+
         self.btn = QPushButton('Закрыть', self)
         self.btn.move(0, 250)
         self.btn.resize(300, 50)
