@@ -39,8 +39,8 @@ class Main_menu(QMainWindow):
 
     def play(self):
         level, ok_pressed = QInputDialog.getItem(
-            self, "Выберите уровень", "уровни",
-            ("1", "2", "3"), 1, False)
+            self, "Выбор уровня", "Выберите уровень или напишите его название",
+            ("level_1", "level_2", "level_3"), 0, True)
         if ok_pressed:
             self.close()
             game_info.put_level(level)

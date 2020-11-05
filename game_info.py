@@ -27,10 +27,12 @@ def get_challenge():
         return input_file.read().split('\n')
 
 
-def put_level(level):
-    os.system(r'nul>level_num.txt')
-    with open('level_num.txt', 'a') as output_file:
-        output_file.write(f'level_{level}')
+def get_button_info(button_name):
+    with open(f'{get_level()}/{get_file()}/{button_name}', 'r', encoding='utf8') as input_file:
+        text = input_file.read()
+        command = text.split('\n')[2]
+        new_file = text.split('\n')[3]
+        return text, command, new_file
 
 
 def get_button_file(button_name):
@@ -46,6 +48,12 @@ def get_completed_tasks():
 def get_sequence_text():
     with open(f'{get_level()}/sequence_text.txt', 'r', encoding='utf8') as input_file:
         return input_file.read()
+
+
+def put_level(level):
+    os.system(r'nul>level_num.txt')
+    with open('level_num.txt', 'a') as output_file:
+        output_file.write(level)
 
 
 def put_file(file):

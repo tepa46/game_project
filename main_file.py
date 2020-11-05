@@ -14,8 +14,6 @@ import game_info
 
 SCREEN_SIZE = [1000, 1000]
 
-file = 'room_1'
-
 
 class Window(QDialog, QWidget):
     def __init__(self):
@@ -29,20 +27,22 @@ class Window(QDialog, QWidget):
         self.setWindowTitle('Undertale')
         self.setGeometry(0, 0, *SCREEN_SIZE)
 
-        self.button_1 = QPushButton(self)
-        self.button_1.clicked.connect(lambda: self.pushed_button('button_1.txt'))
+        self.button_lst = list()
 
-        self.button_2 = QPushButton(self)
-        self.button_2.clicked.connect(lambda: self.pushed_button('button_2.txt'))
+        self.button_lst.append(QPushButton(self))
+        self.button_lst[0].clicked.connect(lambda: self.pushed_button('button_1.txt'))
 
-        self.button_3 = QPushButton(self)
-        self.button_3.clicked.connect(lambda: self.pushed_button('button_3.txt'))
+        self.button_lst.append(QPushButton(self))
+        self.button_lst[1].clicked.connect(lambda: self.pushed_button('button_2.txt'))
 
-        self.button_4 = QPushButton(self)
-        self.button_4.clicked.connect(lambda: self.pushed_button('button_4.txt'))
+        self.button_lst.append(QPushButton(self))
+        self.button_lst[2].clicked.connect(lambda: self.pushed_button('button_3.txt'))
 
-        self.button_5 = QPushButton(self)
-        self.button_5.clicked.connect(lambda: self.pushed_button('button_5.txt'))
+        self.button_lst.append(QPushButton(self))
+        self.button_lst[3].clicked.connect(lambda: self.pushed_button('button_4.txt'))
+
+        self.button_lst.append(QPushButton(self))
+        self.button_lst[4].clicked.connect(lambda: self.pushed_button('button_5.txt'))
 
         self.button_invent = QPushButton('ИНВЕНТАРЬ', self)
         self.button_invent.clicked.connect(self.invent_show)
@@ -65,26 +65,20 @@ class Window(QDialog, QWidget):
         self.setPalette(palette)
 
     def pushed_button(self, button_name):
-        with open(f'{game_info.get_level()}/{game_info.get_file()}/{button_name}', 'r', encoding='utf8') as input_file:
-            text = input_file.read()
-            command = text.split('\n')[2]
-            new_file = text.split('\n')[3]
-
+        text, command, new_file = game_info.get_button_info(button_name)
         code = button_treatment.button_treatment(self, command, button_name)
+        game_info.put_file(new_file)
         if code == 1:
-            self.update()
-            os.system(fr'nul>{game_info.get_level()}/file.txt')
-            game_info.put_file(new_file)
-            self.make_room(f'{game_info.get_level()}/{game_info.get_file()}/background.png')
-            QApplication.processEvents()
-        if code == 2:
-            os.system(fr'nul>{game_info.get_level()}/file.txt')
-            game_info.put_file(new_file)
+            self.new_room()
+        elif code == 2:
             self.do_win_window()
-        if code == 3:
-            os.system(fr'nul>{game_info.get_level()}/file.txt')
-            game_info.put_file(new_file)
+        elif code == 3:
             self.do_lost_window()
+
+    def new_room(self):
+        self.update()
+        self.make_room(f'{game_info.get_level()}/{game_info.get_file()}/background.png')
+        QApplication.processEvents()
 
     def invent_show(self):
         self.invent_view = invent.Invent()

@@ -10,6 +10,12 @@ import game_info
 CHALLENGE_SCREEN_SIZE = [280, 100]
 
 
+def is_new_num(sequence_text):
+    if sequence_text != 'Вы уже тут все посмотрели' and sequence_text != 'Здесь ничего нет':
+        return True
+    return False
+
+
 class Challenge_window(QDialog, QWidget):
     def __init__(self):
         super().__init__()
@@ -23,7 +29,7 @@ class Challenge_window(QDialog, QWidget):
         self.label = QLabel(self)
 
         sequence_text = game_info.get_sequence_text()
-        if sequence_text != 'Вы уже тут все посмотрели' and sequence_text != 'Здесь ничего нет':
+        if is_new_num(sequence_text):
             self.label.setText('Вы нашли новую часть последовательности: ' + '\n' + sequence_text)
         else:
             self.label.setText(sequence_text)
@@ -35,7 +41,7 @@ class Challenge_window(QDialog, QWidget):
 
     def close_window(self):
         sequence_text = game_info.get_sequence_text()
-        if sequence_text != 'Вы уже тут все посмотрели' and sequence_text != 'Здесь ничего нет':
+        if is_new_num(sequence_text):
             self.update()
             self.label.setText('Вы можете увидеть новый предмет' + '\n' + 'открыв инвентарь')
             QApplication.processEvents()
