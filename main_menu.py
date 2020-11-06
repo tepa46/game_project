@@ -46,8 +46,6 @@ class Main_menu(QMainWindow):
             game_info.clear_files()
             self.ex = main_file.Window()
             self.ex.show()
-        else:
-            exit()
 
     def exit(self):
         self.close()
