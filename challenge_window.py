@@ -35,10 +35,4 @@ class Challenge_window(QDialog, QWidget):
         self.btn.clicked.connect(self.close_window)
 
     def close_window(self):
-        sequence_text = game_info.get_sequence_text()
-        if is_new_num(sequence_text):
-            self.update()
-            self.label.setText('Вы можете увидеть новый предмет' + '\n' + 'открыв инвентарь')
-            QApplication.processEvents()
-            time.sleep(1.2)
         self.close()

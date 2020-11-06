@@ -50,6 +50,21 @@ def get_sequence_text():
         return input_file.read()
 
 
+def get_history():
+    put_used_history()
+    with open(f'{get_level()}/{get_file()}/room_history.txt', 'r', encoding='utf8') as input_file:
+        history = input_file.read()
+    return history
+
+
+def get_used_history():
+    with open(f'{get_level()}/rooms_history_used.txt', 'r', encoding='utf8') as input_file:
+        used_his = input_file.read().split('\n')
+    if get_file() in used_his:
+        return True
+    return False
+
+
 def put_level(level):
     os.system(r'nul>level_num.txt')
     with open('level_num.txt', 'a') as output_file:
@@ -88,6 +103,12 @@ def put_sequence_old(text):
         output_file.write('Вы уже тут все посмотрели')
 
 
+def put_used_history():
+    with open(f'{get_level()}/rooms_history_used.txt', 'a') as output_file:
+        output_file.write(f'{get_file()}' + '\n')
+
+
 def clear_files():
     os.system(fr'nul>{get_level()}/inventory.txt')
     os.system(fr'nul>{get_level()}/completed_tasks.txt')
+    os.system(fr'nul>{get_level()}/rooms_history_used.txt')

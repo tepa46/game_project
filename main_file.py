@@ -8,6 +8,7 @@ import invent
 import win_window
 import lost_window
 import game_info
+import make_history
 
 SCREEN_SIZE = [1000, 1000]
 
@@ -49,6 +50,7 @@ class Window(QDialog, QWidget):
     def make_room(self, text):
         self.make_background(text)
         self.make_buttons()
+        self.make_room_history()
 
     def make_buttons(self):
         button_config.button_config(self)
@@ -60,6 +62,11 @@ class Window(QDialog, QWidget):
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))
         self.setPalette(palette)
+
+    def make_room_history(self):
+        if not game_info.get_used_history() and game_info.get_history() != 'This room has no history':
+            self.make_history = make_history.History_window()
+            self.make_history.show()
 
     def pushed_button(self, button_name):
         text, command, new_file = game_info.get_button_info(button_name)
