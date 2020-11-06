@@ -1,5 +1,4 @@
-from PyQt5.QtWidgets import QDialog, QLabel, QPushButton, QApplication, QWidget
-import time
+from PyQt5.QtWidgets import QDialog, QLabel, QPushButton, QWidget
 import game_info
 
 CHALLENGE_SCREEN_SIZE = [280, 100]
