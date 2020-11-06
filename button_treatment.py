@@ -38,7 +38,7 @@ def button_treatment(self, command, button_name):
         check(self, button_name)
     else:
         password, ok_pressed = QInputDialog.getText(self, "Код доступа",
-                                                    "Какой код дотупа?")
+                                                    "Какой код доступа?")
         if ok_pressed:
             if password == ans:
                 return 2

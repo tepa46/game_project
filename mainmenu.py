@@ -8,7 +8,7 @@ import game_info
 SCREEN_SIZE = [1000, 1000]
 
 
-class Main_menu(QMainWindow):
+class MainMenu(QMainWindow):
     def __init__(self):
         super().__init__()
         self.initUI()
@@ -53,5 +53,5 @@ class Main_menu(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    pril = Main_menu()
+    pril = MainMenu()
     sys.exit(app.exec())

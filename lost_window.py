@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QDialog
 from PyQt5.QtGui import QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize, Qt
-import main_menu
+import mainmenu
 
 SCREEN_SIZE = [1000, 1000]
 
@@ -25,5 +25,5 @@ class Lost_window(QDialog, QWidget):
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Space:
             self.close()
-            self.main_menu = main_menu.Main_menu()
+            self.main_menu = mainmenu.MainMenu()
             self.main_menu.show()

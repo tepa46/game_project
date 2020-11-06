@@ -112,3 +112,4 @@ def clear_files():
     os.system(fr'nul>{get_level()}/inventory.txt')
     os.system(fr'nul>{get_level()}/completed_tasks.txt')
     os.system(fr'nul>{get_level()}/rooms_history_used.txt')
+    # os.remove(f'{get_level()}/rooms_history_used.txt')
