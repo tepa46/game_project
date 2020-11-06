@@ -1,10 +1,4 @@
-import sys
-from PyQt5.QtWidgets import QInputDialog, QDialog
-from PyQt5.QtWidgets import QWidget, QLineEdit, QHBoxLayout, QListWidget
-from PyQt5.QtWidgets import QLabel, QPushButton, QApplication
-from PyQt5.QtGui import QPixmap, QImage, QPalette, QBrush
-from PyQt5.QtCore import QSize
-import time
+from PyQt5.QtWidgets import QDialog, QWidget, QListWidget, QPushButton
 import game_info
 
 INVENT_SCREEN_SIZE = [300, 300]

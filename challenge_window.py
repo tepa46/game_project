@@ -1,9 +1,4 @@
-import sys
-from PyQt5.QtWidgets import QInputDialog, QDialog
-from PyQt5.QtWidgets import QWidget, QLineEdit, QHBoxLayout
-from PyQt5.QtWidgets import QLabel, QPushButton, QApplication
-from PyQt5.QtGui import QPixmap, QImage, QPalette, QBrush
-from PyQt5.QtCore import QSize
+from PyQt5.QtWidgets import QDialog, QLabel, QPushButton, QApplication, QWidget
 import time
 import game_info
 

@@ -1,12 +1,9 @@
-import sys
-import os
-from PyQt5.QtWidgets import QWidget, QLineEdit, QHBoxLayout, QInputDialog, QDialog
-from PyQt5.QtWidgets import QLabel, QPushButton, QApplication, QMainWindow
-from PyQt5.QtGui import QPixmap, QImage, QPalette, QBrush, QColor
+from PyQt5.QtWidgets import QWidget, QDialog
+from PyQt5.QtWidgets import QPushButton, QApplication
+from PyQt5.QtGui import QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize
 import button_config
 import button_treatment
-import time
 import invent
 import win_window
 import lost_window

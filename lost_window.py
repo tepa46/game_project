@@ -1,8 +1,5 @@
-import sys
-import os
-from PyQt5.QtWidgets import QWidget, QLineEdit, QHBoxLayout, QInputDialog, QDialog
-from PyQt5.QtWidgets import QLabel, QPushButton, QApplication, QMainWindow
-from PyQt5.QtGui import QPixmap, QImage, QPalette, QBrush, QColor
+from PyQt5.QtWidgets import QWidget, QDialog
+from PyQt5.QtGui import QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize, Qt
 import main_menu
 
@@ -16,14 +13,14 @@ class Lost_window(QDialog, QWidget):
         self.initUI()
 
     def initUI(self):
-            self.setWindowTitle('ПОБЕДА')
-            self.setGeometry(0, 0, *SCREEN_SIZE)
+        self.setWindowTitle('ПОБЕДА')
+        self.setGeometry(0, 0, *SCREEN_SIZE)
 
-            oImage = QImage('lost/lost.png')
-            sImage = oImage.scaled(QSize(*SCREEN_SIZE))
-            palette = QPalette()
-            palette.setBrush(QPalette.Window, QBrush(sImage))
-            self.setPalette(palette)
+        oImage = QImage('lost/lost.png')
+        sImage = oImage.scaled(QSize(*SCREEN_SIZE))
+        palette = QPalette()
+        palette.setBrush(QPalette.Window, QBrush(sImage))
+        self.setPalette(palette)
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Space:
