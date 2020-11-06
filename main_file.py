@@ -24,6 +24,7 @@ class Window(QDialog, QWidget):
 
         self.setWindowTitle('Undertale')
         self.setGeometry(0, 0, *SCREEN_SIZE)
+        self.setFixedSize(*SCREEN_SIZE)
 
         self.button_lst = list()
 

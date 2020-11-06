@@ -1,7 +1,5 @@
-from PyQt5.QtWidgets import QWidget, QDialog, QLabel
-from PyQt5.QtWidgets import QPushButton, QApplication
-from PyQt5.QtGui import QImage, QPalette, QBrush, QFont
-from PyQt5.QtCore import QSize
+from PyQt5.QtWidgets import QWidget, QDialog, QLabel, QPushButton
+from PyQt5.QtGui import QFont
 import game_info
 
 SCREEN_SIZE = [500, 600]
@@ -14,9 +12,9 @@ class History_window(QDialog, QWidget):
         self.initUI()
 
     def initUI(self):
-
         self.setWindowTitle('История')
-        self.setGeometry(150, 150, *SCREEN_SIZE)
+        self.setGeometry(250, 250, *SCREEN_SIZE)
+        self.setFixedSize(*SCREEN_SIZE)
 
         self.label = QLabel(self)
         self.label.resize(500, 550)

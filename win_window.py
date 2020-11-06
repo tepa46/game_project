@@ -15,6 +15,7 @@ class Win_window(QDialog, QWidget):
     def initUI(self):
         self.setWindowTitle('ПОБЕДА')
         self.setGeometry(0, 0, *SCREEN_SIZE)
+        self.setFixedSize(*SCREEN_SIZE)
 
         oImage = QImage('win/win.png')
         sImage = oImage.scaled(QSize(*SCREEN_SIZE))

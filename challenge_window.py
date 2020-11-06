@@ -20,6 +20,7 @@ class Challenge_window(QDialog, QWidget):
     def initUI(self):
         self.setWindowTitle('Challenge')
         self.setGeometry(300, 300, *CHALLENGE_SCREEN_SIZE)
+        self.setFixedSize(*CHALLENGE_SCREEN_SIZE)
 
         self.label = QLabel(self)
 

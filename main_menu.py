@@ -15,7 +15,7 @@ class Main_menu(QMainWindow):
 
     def initUI(self):
         self.setWindowTitle('Undertale')
-        self.setGeometry(0, 0, *SCREEN_SIZE)
+        self.setFixedSize(*SCREEN_SIZE)
 
         oImage = QImage('main_menu_background')
         sImage = oImage.scaled(QSize(*SCREEN_SIZE))
