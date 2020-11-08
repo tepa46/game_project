@@ -80,6 +80,7 @@ class Engine(QDialog, QWidget):
         elif code == 3:
             self.do_lost_window()
 
+
     def new_room(self):
         self.update()
         self.make_room(f'{game_info.info.level}/{game_info.info.file}/background.png')
