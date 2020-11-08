@@ -8,30 +8,30 @@ SCREEN_SIZE = [1000, 1000]
 
 
 def chall_window(self):
-    self.challenge_window = challenge_window.Challenge_window()
+    self.challenge_window = challenge_window.ChallengeWindow()
     self.challenge_window.show()
 
 
 def check(self, button_name):
-    chall_list = game_info.get_challenge()
-    text = game_info.get_button_file(button_name)
-    completed_tasks_lst = game_info.get_completed_tasks()
+    chall_list = game_info.info.challenge
+    text = game_info.info.get_button_file(button_name)
+    completed_tasks_lst = game_info.info.completed_tasks
 
     if text[4] not in completed_tasks_lst:
 
-        game_info.put_completed_tasks(text)
+        game_info.info.put_completed_tasks(text)
         if chall_list[int(text[4]) - 1] != '':
-            game_info.put_inventory(text)
+            game_info.info.put_inventory(text)
 
-        game_info.put_sequence_new(text)
+        game_info.info.put_sequence_new(text)
     else:
-        game_info.put_sequence_old(text)
+        game_info.info.put_sequence_old()
 
     chall_window(self)
 
 
 def button_treatment(self, command, button_name):
-    ans = game_info.get_answer()
+    ans = game_info.info.answer
     if command == 'ОБРАТНО' or command == 'ВОЙТИ В КОМНАТУ':
         return 1
     if command == 'ПОСМОТРЕТЬ':

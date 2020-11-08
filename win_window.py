@@ -1,12 +1,12 @@
 from PyQt5.QtWidgets import QWidget, QDialog
 from PyQt5.QtGui import QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize, Qt
-import mainmenu
+import main_menu
 
 SCREEN_SIZE = [1000, 1000]
 
 
-class Win_window(QDialog, QWidget):
+class WinWindow(QDialog, QWidget):
     def __init__(self):
         super().__init__()
         self.setModal(True)
@@ -26,5 +26,5 @@ class Win_window(QDialog, QWidget):
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Space:
             self.close()
-            self.main_menu = mainmenu.MainMenu()
+            self.main_menu = main_menu.MainMenu()
             self.main_menu.show()

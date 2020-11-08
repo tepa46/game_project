@@ -13,8 +13,8 @@ def button_set(self, level, file, num):
 
 
 def button_config(self):
-    level = game_info.get_level()
-    file = game_info.get_file()
+    level = game_info.info.level
+    file = game_info.info.file
     for num in range(1, 6):
         button_set(self, level, file, num)
 

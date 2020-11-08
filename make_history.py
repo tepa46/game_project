@@ -5,7 +5,7 @@ import game_info
 SCREEN_SIZE = [500, 600]
 
 
-class History_window(QDialog, QWidget):
+class HistoryWindow(QDialog, QWidget):
     def __init__(self):
         super().__init__()
         self.setModal(True)
@@ -18,7 +18,7 @@ class History_window(QDialog, QWidget):
 
         self.label = QLabel(self)
         self.label.resize(500, 550)
-        self.label.setText(game_info.get_history())
+        self.label.setText(game_info.info.get_history())
         self.label.setFont(QFont("Times", 14, QFont.Bold))
 
         self.btn = QPushButton('ЗАКРЫТЬ', self)

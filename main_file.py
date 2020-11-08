@@ -13,14 +13,14 @@ import make_history
 SCREEN_SIZE = [1000, 1000]
 
 
-class Window(QDialog, QWidget):
+class Engine(QDialog, QWidget):
     def __init__(self):
         super().__init__()
         self.setModal(True)
         self.initUI()
 
     def initUI(self):
-        game_info.clear_files()
+        game_info.info.clear_files()
 
         self.setWindowTitle('Undertale')
         self.setGeometry(0, 0, *SCREEN_SIZE)
@@ -46,7 +46,7 @@ class Window(QDialog, QWidget):
         self.button_invent = QPushButton('ИНВЕНТАРЬ', self)
         self.button_invent.clicked.connect(self.invent_show)
 
-        self.make_room(f'{game_info.get_level()}/{game_info.get_file()}/background.png')
+        self.make_room(f'{game_info.info.level}/{game_info.info.file}/background.png')
 
     def make_room(self, text):
         self.make_background(text)
@@ -65,14 +65,14 @@ class Window(QDialog, QWidget):
         self.setPalette(palette)
 
     def make_room_history(self):
-        if not game_info.get_used_history() and game_info.get_history() != 'This room has no history':
-            self.make_history = make_history.History_window()
+        if not game_info.info.get_used_history() and game_info.info.get_history() != 'This room has no history':
+            self.make_history = make_history.HistoryWindow()
             self.make_history.show()
 
     def pushed_button(self, button_name):
-        text, command, new_file = game_info.get_button_info(button_name)
+        text, command, new_file = game_info.info.get_button_info(button_name)
         code = button_treatment.button_treatment(self, command, button_name)
-        game_info.put_file(new_file)
+        game_info.info.put_file(new_file)
         if code == 1:
             self.new_room()
         elif code == 2:
@@ -82,7 +82,7 @@ class Window(QDialog, QWidget):
 
     def new_room(self):
         self.update()
-        self.make_room(f'{game_info.get_level()}/{game_info.get_file()}/background.png')
+        self.make_room(f'{game_info.info.level}/{game_info.info.file}/background.png')
         QApplication.processEvents()
 
     def invent_show(self):
@@ -91,10 +91,10 @@ class Window(QDialog, QWidget):
 
     def do_win_window(self):
         self.close()
-        self.win_window = win_window.Win_window()
+        self.win_window = win_window.WinWindow()
         self.win_window.show()
 
     def do_lost_window(self):
         self.close()
-        self.lost_window = lost_window.Lost_window()
+        self.lost_window = lost_window.LostWindow()
         self.lost_window.show()

@@ -41,10 +41,12 @@ class MainMenu(QMainWindow):
             ("level_1", "level_2", "level_3"), 0, True)
         if ok_pressed:
             self.close()
-            game_info.put_level(level)
-            game_info.put_file('room_1')
-            game_info.clear_files()
-            self.ex = main_file.Window()
+            open('game_info.py')
+            game_info.info.put_level(level)
+            game_info.info.put_file('room_1')
+            game_info.info.clear_files()
+            game_info.info.init_all_info()
+            self.ex = main_file.Engine()
             self.ex.show()
 
     def exit(self):

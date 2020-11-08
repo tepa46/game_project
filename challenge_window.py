@@ -10,7 +10,7 @@ def is_new_num(sequence_text):
     return False
 
 
-class Challenge_window(QDialog, QWidget):
+class ChallengeWindow(QDialog, QWidget):
     def __init__(self):
         super().__init__()
         self.setModal(True)
@@ -23,7 +23,7 @@ class Challenge_window(QDialog, QWidget):
 
         self.label = QLabel(self)
 
-        sequence_text = game_info.get_sequence_text()
+        sequence_text = game_info.info.sequence_text
         if is_new_num(sequence_text):
             self.label.setText('Вы нашли новую часть последовательности: ' + '\n' + sequence_text)
         else:

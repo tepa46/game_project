@@ -17,7 +17,7 @@ class Invent(QDialog, QWidget):
 
         self.list_wid = QListWidget(self)
         self.list_wid.resize(300, 250)
-        all_file = game_info.get_inventory()
+        all_file = game_info.info.inventory
         for line in all_file:
             self.list_wid.addItem(line)
 
