@@ -10,6 +10,7 @@ import lost_window
 import game_info
 import make_history
 import final_window
+import os
 
 SCREEN_SIZE = [1000, 1000]
 
@@ -85,7 +86,7 @@ class Engine(QDialog, QWidget):
 
     def new_room(self):
         self.update()
-        self.make_room(f'{game_info.info.level}/{game_info.info.file}/background.png')
+        self.make_room(os.path.join(fr'{game_info.info.level}/{game_info.info.file}', 'background.png'))
         QApplication.processEvents()
 
     def invent_show(self):
