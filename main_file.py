@@ -9,6 +9,7 @@ import win_window
 import lost_window
 import game_info
 import make_history
+import final_window
 
 SCREEN_SIZE = [1000, 1000]
 
@@ -79,7 +80,8 @@ class Engine(QDialog, QWidget):
             self.do_win_window()
         elif code == 3:
             self.do_lost_window()
-
+        elif code == 4:
+            self.do_game_end_wind()
 
     def new_room(self):
         self.update()
@@ -99,3 +101,8 @@ class Engine(QDialog, QWidget):
         self.close()
         self.lost_window = lost_window.LostWindow()
         self.lost_window.show()
+
+    def do_game_end_wind(self):
+        self.close()
+        self.game_end_win = final_window.FinalWindow()
+        self.game_end_win.show()

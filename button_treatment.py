@@ -34,18 +34,16 @@ def button_treatment(self, command, button_name):
     ans = game_info.info.answer
     if command == 'ОБРАТНО' or command == 'ВОЙТИ В КОМНАТУ' or command == 'ПРОЙТИ ДАЛЬШЕ':
         return 1
-    if command == 'ПОСМОТРЕТЬ':
+    elif command == 'ПОСМОТРЕТЬ':
         check(self, button_name)
-    if command == 'ЗАВЕРШИТЬ ИГРУ':
-        return 2
-    if command == 'ВЫБРАТЬСЯ ИЗ УБЕЖИЩА':
+    elif command == 'ВЫБРАТЬСЯ ИЗ УБЕЖИЩА':
         password, ok_pressed = QInputDialog.getText(self, "Код доступа",
                                                     "Какой код доступа?")
         if ok_pressed:
             if password == ans:
-                return 1
+                return 4
             return 3
-    else:
+    elif command == 'ПРЕДОСТАВИТЬ ПАРОЛЬ':
         password, ok_pressed = QInputDialog.getText(self, "Код доступа",
                                                     "Какой код доступа?")
         if ok_pressed:

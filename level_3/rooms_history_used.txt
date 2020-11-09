@@ -5,5 +5,3 @@ room_3
 room_5
 room_6
 room_6
-room_7
-room_7
