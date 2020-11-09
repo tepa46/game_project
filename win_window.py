@@ -34,7 +34,6 @@ class WinWindow(QDialog, QWidget):
             new_level = 'level_3'
             game_info.info.put_new_level(new_level)
 
-
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Space:
             self.close()
