@@ -36,12 +36,14 @@ class MainMenu(QMainWindow):
         self.show()
 
     def play(self):
+        open('game_info.py')
+        game_info.info.get_unlock_levels()
+        levels = game_info.info.unlock_levels
         level, ok_pressed = QInputDialog.getItem(
             self, "Выбор уровня", "Выберите уровень или напишите его название",
-            ("level_1", "level_2", "level_3"), 0, True)
+            levels, 0, True)
         if ok_pressed:
             self.close()
-            open('game_info.py')
             game_info.info.put_level(level)
             game_info.info.put_file('room_1')
             game_info.info.clear_files()

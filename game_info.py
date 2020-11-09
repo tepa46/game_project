@@ -12,6 +12,7 @@ class GameInfo:
         self.challenge = ''
         self.completed_tasks = ''
         self.sequence_text = ''
+        self.unlock_levels = list()
 
     def init_all_info(self):
         self.level = self.get_level()
@@ -21,6 +22,11 @@ class GameInfo:
         self.challenge = self.get_challenge()
         self.completed_tasks = self.get_completed_tasks()
         self.sequence_text = self.get_sequence_text()
+        self.get_unlock_levels()
+
+    def get_unlock_levels(self):
+        with open('unlock_levels.txt', 'r', encoding='utf8') as input_file:
+            self.unlock_levels = input_file.read().split('\n')
 
     def get_level(self):
         with open('level_num.txt', 'r') as input_file:
@@ -114,6 +120,10 @@ class GameInfo:
     def put_used_history(self):
         with open(f'{self.level}/rooms_history_used.txt', 'a') as output_file:
             output_file.write(f'{self.file}' + '\n')
+
+    def put_new_level(self, level_name):
+        with open('unlock_levels.txt', 'a') as output_file:
+            output_file.write('\n' + level_name)
 
     def clear_files(self):
         clear_file(f'{self.get_level()}/inventory.txt')

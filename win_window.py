@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QWidget, QDialog
 from PyQt5.QtGui import QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize, Qt
 import main_menu
+import game_info
 
 SCREEN_SIZE = [1000, 1000]
 
@@ -22,6 +23,17 @@ class WinWindow(QDialog, QWidget):
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))
         self.setPalette(palette)
+
+        self.get_new_level()
+
+    def get_new_level(self):
+        if game_info.info.level == 'level_1':
+            new_level = 'level_2'
+            game_info.info.put_new_level(new_level)
+        elif game_info.info.level == 'level_2':
+            new_level = 'level_3'
+            game_info.info.put_new_level(new_level)
+
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Space:
