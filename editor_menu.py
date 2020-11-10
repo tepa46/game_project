@@ -68,7 +68,6 @@ class EditorMenu(QMainWindow):
                             else:
                                 output_file.write('\n' + lvl)
 
-
     def exit(self):
         self.close()
 
