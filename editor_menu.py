@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import QInputDialog, QPushButton, QApplication, QMainWindow
 from PyQt5.QtGui import QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize
 import add_custom_level
-import os
 import shutil
 
 SCREEN_SIZE = [1000, 1000]

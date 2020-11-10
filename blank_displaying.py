@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import QWidget, QDialog, QInputDialog, QLabel
-from PyQt5.QtWidgets import QPushButton, QApplication
+from PyQt5.QtWidgets import QWidget, QDialog, QInputDialog
+from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtGui import QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize
 import os
