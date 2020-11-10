@@ -41,7 +41,7 @@ class MainMenu(QMainWindow):
         levels = game_info.info.unlock_levels
         level, ok_pressed = QInputDialog.getItem(
             self, "Выбор уровня", "Выберите уровень или напишите его название",
-            levels, 0, True)
+            levels, 0, False)
         if ok_pressed:
             self.close()
             game_info.info.put_level(level)
