@@ -4,5 +4,10 @@ room_2
 room_2
 room_3
 room_3
+room_4
+room_4
+room_5
+room_7
+room_8
 room_6
 room_6
