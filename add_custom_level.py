@@ -42,13 +42,8 @@ class AddCustomLevel(QDialog, QWidget):
         self.btn_delete_room.resize(200, 100)
         self.btn_delete_room.clicked.connect(self.finish_add)
 
-        self.btn_delete_room = QPushButton('УДАЛИТЬ КОМНАТУ', self)
-        self.btn_delete_room.move(400, 760)
-        self.btn_delete_room.resize(200, 100)
-        self.btn_delete_room.clicked.connect(self.delete_room)
-
         self.btn_exit = QPushButton('ЗАКРЫТЬ', self)
-        self.btn_exit.move(400, 890)
+        self.btn_exit.move(400, 760)
         self.btn_exit.resize(200, 100)
         self.btn_exit.clicked.connect(self.exit)
 
@@ -144,12 +139,6 @@ class AddCustomLevel(QDialog, QWidget):
         with open('unlock_levels.txt', 'a', encoding='utf8') as output_file:
             output_file.write('\n' + level)
         self.exit()
-
-    def delete_room(self):
-        path, ok_pressed = QInputDialog.getText(self, "Введите название",
-                                                "Какую комнату удалить?")
-        if ok_pressed:
-            os.remove(path)
 
     def exit(self):
         self.close()
