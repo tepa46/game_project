@@ -46,7 +46,6 @@ class EditorMenu(QMainWindow):
         self.close()
         self.editor = add_custom_level.AddCustomLevel()
         self.editor.show()
-    # добавлть в unlock_levels
 
     def delete_level(self):
         with open('unlock_levels.txt', 'r', encoding='utf8') as input_file:
@@ -57,6 +56,18 @@ class EditorMenu(QMainWindow):
         if ok_pressed:
             if level_name != 'level_1' and level_name != 'level_2' and level_name != 'level_3':
                 shutil.rmtree(level_name)
+                output_file = open('unlock_levels.txt', 'w', encoding='utf8')
+                output_file.close()
+                first = True
+                with open('unlock_levels.txt', 'a', encoding='utf8') as output_file:
+                    for lvl in levels_lst:
+                        if lvl != level_name:
+                            if first:
+                                output_file.write(lvl)
+                                first = False
+                            else:
+                                output_file.write('\n' + lvl)
+
 
     def exit(self):
         self.close()
