@@ -6,7 +6,7 @@ import os
 import shutil
 import blank_displaying
 
-SCREEN_SIZE = [1000, 1000]
+SCREEN_SIZE = [700, 700]
 
 
 class AddCustomLevel(QDialog, QWidget):

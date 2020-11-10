@@ -4,7 +4,7 @@ from PyQt5.QtGui import QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize
 import os
 
-SCREEN_SIZE = [1000, 1000]
+SCREEN_SIZE = [700, 700]
 
 
 class AddCustomLevel(QDialog, QWidget):

@@ -18,5 +18,5 @@ def button_config(self):
     for num in range(1, 6):
         button_set(self, level, file, num)
 
-    self.button_invent.move(0, 900)
-    self.button_invent.resize(100, 100)
+    self.button_invent.move(0, 630)
+    self.button_invent.resize(70, 70)

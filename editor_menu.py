@@ -5,7 +5,7 @@ from PyQt5.QtCore import QSize
 import add_custom_level
 import shutil
 
-SCREEN_SIZE = [1000, 1000]
+SCREEN_SIZE = [700, 700]
 
 
 class EditorMenu(QMainWindow):

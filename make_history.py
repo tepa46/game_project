@@ -13,7 +13,7 @@ class HistoryWindow(QDialog, QWidget):
 
     def initUI(self):
         self.setWindowTitle('История')
-        self.setGeometry(250, 250, *SCREEN_SIZE)
+        self.setGeometry(180, 180, *SCREEN_SIZE)
         self.setFixedSize(*SCREEN_SIZE)
 
         self.label = QLabel(self)

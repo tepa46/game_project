@@ -6,7 +6,7 @@ import win_window
 import game_info
 import make_history
 
-SCREEN_SIZE = [1000, 1000]
+SCREEN_SIZE = [700, 700]
 
 
 class FinalWindow(QDialog, QWidget):
@@ -24,8 +24,8 @@ class FinalWindow(QDialog, QWidget):
         game_info.info.put_file('room_1')
 
         self.btn = QPushButton('ЗАВЕРШИТЬ ИГРУ', self)
-        self.btn.resize(120, 120)
-        self.btn.move(440, 800)
+        self.btn.resize(84, 84)
+        self.btn.move(308, 560)
         self.btn.clicked.connect(self.end_game)
 
         oImage = QImage(f'{game_info.info.level}/{game_info.info.file}/background.png')

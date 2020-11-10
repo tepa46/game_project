@@ -5,7 +5,7 @@ from PyQt5.QtCore import QSize
 import main_file
 import game_info
 
-SCREEN_SIZE = [1000, 1000]
+SCREEN_SIZE = [700, 700]
 
 
 class MainMenu(QMainWindow):
@@ -24,13 +24,13 @@ class MainMenu(QMainWindow):
         self.setPalette(palette)
 
         self.btn_play = QPushButton('ИГРАТЬ', self)
-        self.btn_play.move(400, 500)
-        self.btn_play.resize(200, 100)
+        self.btn_play.move(280, 350)
+        self.btn_play.resize(140, 70)
         self.btn_play.clicked.connect(self.play)
 
         self.btn_exit = QPushButton('ВЫЙТИ', self)
-        self.btn_exit.move(400, 630)
-        self.btn_exit.resize(200, 100)
+        self.btn_exit.move(280, 441)
+        self.btn_exit.resize(140, 70)
         self.btn_exit.clicked.connect(self.exit)
 
         self.show()

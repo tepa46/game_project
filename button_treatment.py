@@ -4,7 +4,7 @@ import game_info
 
 CHALLENGE_SCREEN_SIZE = [280, 100]
 
-SCREEN_SIZE = [1000, 1000]
+SCREEN_SIZE = [700, 700]
 
 
 def chall_window(self):

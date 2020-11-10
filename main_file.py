@@ -12,7 +12,7 @@ import make_history
 import final_window
 import os
 
-SCREEN_SIZE = [1000, 1000]
+SCREEN_SIZE = [700, 700]
 
 
 class Engine(QDialog, QWidget):
