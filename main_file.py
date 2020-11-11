@@ -25,7 +25,6 @@ class Engine(QDialog, QWidget):
         game_info.info.clear_files()
 
         self.setWindowTitle('Undertale')
-        self.setGeometry(0, 0, *SCREEN_SIZE)
         self.setFixedSize(*SCREEN_SIZE)
 
         self.button_lst = list()

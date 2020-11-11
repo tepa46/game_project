@@ -122,8 +122,9 @@ class GameInfo:
             output_file.write(f'{self.file}' + '\n')
 
     def put_new_level(self, level_name):
-        with open('unlock_levels.txt', 'a') as output_file:
-            output_file.write('\n' + level_name)
+        if level_name not in self.unlock_levels:
+            with open('unlock_levels.txt', 'a') as output_file:
+                output_file.write('\n' + level_name)
 
     def clear_files(self):
         clear_file(f'{self.get_level()}/inventory.txt')

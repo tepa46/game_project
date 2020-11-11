@@ -17,15 +17,14 @@ class FinalWindow(QDialog, QWidget):
 
     def initUI(self):
         self.setWindowTitle('Game end')
-        self.setGeometry(0, 0, *SCREEN_SIZE)
         self.setFixedSize(*SCREEN_SIZE)
 
         game_info.info.put_level('game_end')
         game_info.info.put_file('room_1')
 
         self.btn = QPushButton('ЗАВЕРШИТЬ ИГРУ', self)
-        self.btn.resize(84, 84)
-        self.btn.move(308, 560)
+        self.btn.resize(120, 84)
+        self.btn.move(290, 560)
         self.btn.clicked.connect(self.end_game)
 
         oImage = QImage(f'{game_info.info.level}/{game_info.info.file}/background.png')

@@ -12,7 +12,6 @@ class Invent(QDialog, QWidget):
 
     def initUI(self):
         self.setWindowTitle('Challenge')
-        self.setGeometry(230, 230, *INVENT_SCREEN_SIZE)
         self.setFixedSize(*INVENT_SCREEN_SIZE)
 
         self.list_wid = QListWidget(self)

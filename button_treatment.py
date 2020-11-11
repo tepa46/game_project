@@ -2,10 +2,6 @@ from PyQt5.QtWidgets import QInputDialog
 import challenge_window
 import game_info
 
-CHALLENGE_SCREEN_SIZE = [280, 100]
-
-SCREEN_SIZE = [700, 700]
-
 
 def chall_window(self):
     self.challenge_window = challenge_window.ChallengeWindow()
